@@ -3,35 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="test.css">
+    <title>Get in touch</title>
+    <link rel="stylesheet" href="/test.css">
     <style>
         *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
 }
 html,body{
     width: 100%;
     height: 100%;
 }
-ul{
-list-style-type: none;
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: #001660;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-li{
-padding: 7px;
-display: inline-block;
+form{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 4vw;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+form h3{
+    color: #555;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+form input{
+    border: 0;
+    margin: 10px 0;
+    padding: 20px;
+    outline:none;
+    background-color: #f5f5f5;
+    font-size: 16px;
+}
+form button{
+    padding: 15px;
+    background-color: #ff5361;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    width: 150px;
+    margin: 20px auto 0;
+    border-radius: 30px;
 }
     </style>
 </head>
 <body>
-    <div id="nav">
-        <ul>
-            <li><button onclick='window.open("https://www.youtube.com/")'>YouTube </button></li>
-            <li><button onclick="window.open('https://www.google.co.in/')">Google</button></li>
-            <li><button onclick="window.open('https://www.google.com/gmail/about/')">Gmail</button></li>
-        </ul>
-    </div>
+   <div class="container">
+    <form onsubmit="sendEmail(); reset(); return false;">
+        <h3>Get in touch</h3>
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="tel" id="phone" placeholder="phone no." required>
+        <button type="submit">Call back</button>
+    </form>
+   </div>
 </body>
-<script src="/test.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+    function sendEmail(){
+        Email.send({
+            Host : "smtp.elasticemail.com",
+            Username : "harsha.katari09@gmail.com",
+            Password : "BB8CEEA18239CDCE2578254478ABE0A6F2C8",
+            To : 'harshavardhanreddykatari8@gmail.com',
+            From :'harsha.katari09@gmail.com',
+            Subject : "New Contact Form Enquiry",
+            Body : "Name: "+document.getElementById("name").value+" <br> Email: "+document.getElementById("email").value + "<br> Phone no: "+document.getElementById("phone").value
+        }).then(
+            message => alert("ThankYou for contacting us. Our Team will call U back")
+        );
+    }
+</script>
 </html>
